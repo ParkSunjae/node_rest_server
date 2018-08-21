@@ -20,6 +20,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+/**
+ * CORS
+ */
+app.use(function(req, res, next) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
